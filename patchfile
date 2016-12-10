@@ -1,0 +1,42 @@
+--- /usr/local/capitveportal/index.php	2016-12-10 12:05:04.000000000 +0100
++++ /usr/local/captiveportal/index.php.vf	2016-12-10 12:04:01.000000000 +0100
+@@ -58,6 +58,7 @@
+ require_once("auth.inc");
+ require_once("functions.inc");
+ require_once("captiveportal.inc");
++    require_once("VereinsfliegerRestInterface.php");
+ 
+ $errormsg = "Invalid credentials specified.";
+ 
+@@ -272,8 +273,29 @@
+ 			captiveportal_logportalauth($_POST['auth_user'], $clientmac, $clientip, "LOGIN");
+ 			portal_allow($clientip, $clientmac, $_POST['auth_user']);
+ 		} else {
+-			captiveportal_logportalauth($_POST['auth_user'], $clientmac, $clientip, "FAILURE");
+-			portal_reply_page($redirurl, "error", $errormsg);
++            /*
++            if ($cpcfg['vfauth_priv']) {
++            */
++            
++            $vfif = new VereinsfliegerRestInterface();
++            $vfresult = $vfif->SignIn($_POST['auth_user'], $_POST['auth_pass']);
++            
++            /*
++            }
++            else {
++                $vfresult = $cpcfg['vfauth_priv'];
++            }
++            */
++            
++            if (!$vfresult) {
++                captiveportal_logportalauth($_POST['auth_user'], $clientmac, $clientip, "FAILURE");
++                portal_reply_page($redirurl, "error", $errormsg);
++            }
++            else {
++                captiveportal_logportalauth($_POST['auth_user'], $clientmac, $clientip, "LOGIN");
++                portal_allow($clientip, $clientmac, $_POST['auth_user']);
++                $loginok = $vfresult;
++            }
+ 		}
+ 	} else {
+ 		portal_reply_page($redirurl, "error", $errormsg);
