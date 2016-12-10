@@ -1,5 +1,5 @@
 --- /usr/local/capitveportal/index.php	2016-12-10 12:05:04.000000000 +0100
-+++ /usr/local/captiveportal/index.php.vf	2016-12-10 12:04:01.000000000 +0100
++++ /usr/local/captiveportal/index.php	2016-12-10 12:04:01.000000000 +0100
 @@ -58,6 +58,7 @@
  require_once("auth.inc");
  require_once("functions.inc");
