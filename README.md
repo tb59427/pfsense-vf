@@ -8,6 +8,7 @@ USE AT YOUR OWN RISK
 What works/what doesn't
 - login using vereinsflieger in an appropriate configured captive portal works
 - use of vereinsflieger CID works
+- Only works with "local authentication" switched on
 - UNTESTED: multiple zones with this login switch on/off
 - configuration does still look a bit clumsy
 
@@ -34,9 +35,10 @@ Mini-How-To:
 10. Save
 
 Now (really!) back up the above files. 
-Hit the Test Button. It should tell you, that this patch can be applied but can' be reverted (normal)
+Hit the Test Button. It should tell you, that this patch can be applied but can't be reverted (normal, as it has not been applied yet)
+
 Apply
 
-There is an additional section now in the captive portal config (Services->Captive Portal) under Authentication. it allows you to 
-switch on vereinsflieger authentication. Currently only works if local authentication is enabled.
+There is an additional section now in the captive portal config (Services->Captive Portal) under Authentication. It allows you to 
+switch on vereinsflieger authentication. Currently only works if local authentication is enabled (doesn't work with RADIUS authentication (login code for this is pretty awkward - will eventually integrate it there as well).
 Add your vereinsflieger CID or put a 0 there in case anyone with a vereinsflieger login is welcome in your WIFI
