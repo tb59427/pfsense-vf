@@ -777,14 +777,14 @@ $section->addInput(new Form_Checkbox(
     null,
     'vereinsflieger Authentication',
     $pconfig['vfauth_priv']
-))->setHelp('Try Vereinsflieger if local auth fails');
+))->setHelp('Try Vereinsflieger if local authentication fails');
 
 $section->addInput(new Form_Input(
 	'vfauth_cid',
 	null,
 	'text',
 	$pconfig['vfauth_cid']
-))->setHelp('Your Vereinsflieger Club-ID. 0 if membership in any Club using vereinsflieger is sufficient');
+))->setHelp('Your <a href="https://www.vereinsflieger.de/member/admin/community.php">Vereinsflieger Club-ID</a>. Enter 0 if membership in any Club using vereinsflieger is sufficient for login');
 
 
 /*
